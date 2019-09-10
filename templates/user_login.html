@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user_login</title>
+</head>
+<body>
+<h1>{{ message }}</h1>
+<form action="/auth/login/" method="post">
+          {% csrf_token %}
+    <div>
+      <h1>User Login</h1>
+      <p>Please Login ...</p>
+      <hr>
+      <label><b>UserName</b></label>
+      <input type="text" placeholder="Enter UserName" name="UserName" required>
+      <label><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="Password" required>
+      <button type="submit">Login</button>
+    </div>
+</form>
+</body>
+</html>
