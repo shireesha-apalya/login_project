@@ -15,11 +15,11 @@ def user_registration(request):
         password = request.POST["Password"]
 
         if len(user_name) > 0 and len(password) > 0:
-            user = authenticate(request, username=user_name, password=password)
+            user = Person(request, User_name=user_name, Password=password)
             print("users+",user)
             if user is None:
                 user = get_user_model().objects.create_user(username=user_name, password=password)
-                signup_user = Person.objects.create(User_name=user_name, Password=password)
+                user = Person.objects.create(User_name=user_name, Password=password)
                 user.save()
 
                 if user is not None:
@@ -38,12 +38,13 @@ def user_login(request):
     if request_method == "POST":
         username = request.POST['UserName']
         password = request.POST['Password']
-        user = authenticate(request, username=username, password=password)
+        user = Person(request, User_name=username, Password=password)
         print(user)
         if user is not None:
-            login(request, user)
+            # login(request, user)
+
             context = {"message": "Welcome {} !!!".format(username)}
-            return resp
+            # return resp
             return render(request, 'user_page.html', context)
         else:
             context = {"message": "{}, Try Again !!!".format(username)}
